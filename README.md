@@ -1,1 +1,1 @@
-# cooperation-under-endogenous-institutions
+This repository contains all files necessary to replicate the results of the paper "Cooperation Under Endogenous Institutions: Direct Democracy vs Indirect Democracy". The "data" folder contains both the raw data from the experimental sessions and the combined dataset used in analysis. The "analysis" folder contains Stata files to reproduce the results and figures. The "otree-code" folder contains the oTree (Chen et al., 2016) code used to implement the experiment.
