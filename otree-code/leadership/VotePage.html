@@ -1,0 +1,28 @@
+{{ block title }}
+    Vote
+{{ endblock }}
+
+{{ block content }}
+<p>
+    You are Participant {{player.participant.id_in_session}} (P{{player.participant.id_in_session}}).
+</p>
+<br>
+    <h5>Decision History - Part 1</h5>
+    <table class="table">
+        {{ for i in ah }}
+            <tr>
+                {{ for j in i }}
+                    {{ if j in header }}
+                        <th> {{ j }} </th>
+                    {{ else }}
+                        <td> {{ j }} </td>
+                    {{ endif }}
+                {{ endfor }}
+            </tr>
+        {{ endfor }}
+    </table>
+    <br>
+    {{ formfields }}
+    <br>
+    {{ next_button }}
+{{ endblock }}

@@ -1,0 +1,192 @@
+{{ block title }}
+    Part 2
+{{ endblock }}
+{{ block content }}
+
+<style>
+    .tab {
+        display: none;
+    }
+</style>
+
+<div class="tab">
+    <h5>Instructions</h5>
+    <br>
+    <p style="text-align: justify;">
+        In this part of the experiment, you will participate with the same group in ten rounds as in Part 1 with the
+        difference that the payoffs may be modified in the voting stage. If the payoffs are modified, the new payoffs
+        will be as follows: If the person you are matched with chooses A, and you choose A, both of you earn 50
+        points. If the person you are matched with chooses B, and you choose A, you earn 10 points, whereas the
+        other person earns 48 points. If the person you are matched with chooses A, and you choose B, you earn
+        48 points, whereas the other person earns 10 points. If the person you are matched with chooses B, and
+        you choose B, you both earn 40 points.
+    </p>
+    <p style="text-align: justify;">
+        Whether the payoffs are modified is determined as follows. First, you will be shown the past actions of each
+        participant in your group and be asked whether you would modify the payoffs or not if you were elected as the
+        representative. Then, each group member will name a group member who will act as your group’s representative
+        without knowing her actual modification preference. The group member who is named most often is elected as the
+        representative of your group. In case of a tie, the computer breaks it. Second, the computer will randomly choose
+        whether or not to consider the choice of the representative to modify the payoffs. If the computer considers the
+        representative's choice, this choice will be implemented. If the computer does not consider the representative's
+        choice, it will randomly choose whether to modify payoffs or not.
+    </p>
+    <p style="text-align: justify;">
+        At the end of the voting stage, you will be informed if the computer randomly chooses to consider the votes or
+        not and whether payoffs are modified or not. The diagram below summarizes the voting stage:
+    </p>
+    <br>
+    <p style="text-align: center;"><img src="{{ static 'rd.png' }}" alt="voting_dd" width="700" height="400"></p>
+    <br>
+    <p>
+        <button type="button" class="btn btn-primary btn-tab" data-offset="1">Next</button>
+    </p>
+</div>
+<div class="tab">
+    <h5>Instructions</h5>
+    <br>
+    <p style="text-align: justify;">
+        When the voting stage is completed, you will participate in another ten rounds. In each round, you will be
+        randomly matched with another participant in your group. If the outcome of the voting stage indicates
+        modification of the payoffs, the payoffs will be determined according to Table 2. However, if there is no
+        modification, the payoffs will be determined according to Table 1.
+    </p>
+        <table class="table" style="text-align:center">
+        <caption style="text-align: center">Table 1: Initial Payoffs</caption>
+    <tbody>
+        <tr>
+            <td><strong>Your action</strong></td>
+            <td><strong>The other person's action</strong></td>
+            <td><strong>Your payoff</strong></td>
+            <td><strong>The other person's payoff</strong></td>
+        </tr>
+        <tr>
+             <td>A</td>
+             <td>A</td>
+             <td>50</td>
+             <td>50</td>
+        </tr>
+        <tr>
+            <td>A</td>
+            <td>B</td>
+            <td>10</td>
+            <td style="color:#FF0000">60</td>
+        </tr>
+        <tr>
+            <td>B</td>
+            <td>A</td>
+            <td style="color:#FF0000">60</td>
+            <td>10</td>
+        </tr>
+        <tr>
+            <td>B</td>
+            <td>B</td>
+            <td>40</td>
+            <td>40</td>
+        </tr>
+    </tbody>
+    </table>
+    <br>
+    <br>
+    <table class="table" style="text-align:center">
+        <caption style="text-align: center">Table 2: Modified Payoffs</caption>
+    <tbody>
+        <tr>
+            <td><strong>Your action</strong></td>
+            <td><strong>The other person's action</strong></td>
+            <td><strong>Your payoff</strong></td>
+            <td><strong>The other person's payoff</strong></td>
+        </tr>
+        <tr>
+            <td>A</td>
+            <td>A</td>
+            <td>50</td>
+            <td>50</td>
+        </tr>
+        <tr>
+            <td>A</td>
+            <td>B</td>
+            <td>10</td>
+            <td style="color:#FF0000">48</td>
+        </tr>
+        <tr>
+            <td>B</td>
+            <td>A</td>
+            <td style="color:#FF0000">48</td>
+            <td>10</td>
+        </tr>
+        <tr>
+            <td>B</td>
+            <td>B</td>
+            <td>40</td>
+            <td>40</td>
+        </tr>
+    </tbody>
+    </table>
+    <br>
+    <p>
+        <button type="button" class="btn btn-primary btn-tab" data-offset="-1">Previous</button>
+        <button type="button" class="btn btn-primary btn-tab" data-offset="1">Next</button>
+    </p>
+</div>
+<div class="tab">
+    <h5>Practice Questions</h5>
+    <br>
+    <p style="text-align: justify;">
+        Before you vote, you are asked to answer the questions given below to ensure that the voting instructions
+        are clear to you.
+    </p>
+    <table class="table">
+    {{ for field in form }}
+        <tr>
+            <td>{{ field.label }}</td>
+            <td>{{ field }}</td>
+        </tr>
+    {{ endfor }}
+    </table>
+    <br>
+    <p>
+        <button type="button" class="btn btn-primary btn-tab" data-offset="-1">Previous</button>
+        <button class="btn btn-primary">Next</button>
+    </p>
+</div>
+
+<script>
+    let activeTab = js_vars.errors.length === 0 ? 0 : 2;
+    if (activeTab === 2) {
+        document.getElementsByClassName("otree-form-errors")[0].firstChild.nodeValue =
+            "There are incorrect answers. Please read the instructions again.";
+
+            js_vars.errors.forEach(function (item, index) {
+                const input = document.getElementById('id_' + item);
+                const input_radio = document.getElementById('id_' + item + '-0');
+                if (input_radio != null) {
+                    if (input_radio.checked) {
+                        input_radio.style.backgroundColor = '#fc3d3d'
+                    } else if (document.getElementById('id_' + item + '-1').checked){
+                        document.getElementById('id_' + item + '-1').style.backgroundColor = '#fc3d3d'
+                    }
+                } else {
+                    input.style.backgroundColor = '#f8a2a2ff';
+                }
+            });
+    }
+
+    function showCurrentTabOnly() {
+        let tabIndex = 0;
+        for (let tab of document.getElementsByClassName('tab')) {
+            tab.style.display = tabIndex === activeTab ? 'block' : 'none';
+            tabIndex++;
+        }
+    }
+
+    showCurrentTabOnly();
+    for (let btn of document.getElementsByClassName('btn-tab')) {
+        btn.onclick = function () {
+            activeTab += parseInt(btn.dataset.offset);
+            showCurrentTabOnly();
+        }
+    }
+</script>
+
+{{ endblock }}

@@ -1,0 +1,16 @@
+{{ block content }}
+    <p>
+        Please answer the following questions.
+    </p>
+    <br>
+    {% formfield player.age %}
+    <br>
+    {% formfield player.gender %}
+    <br>
+    <p style="text-align: center;"><img src="{{ static 'ios.png' }}" alt="ios"></p>
+    {% formfield player.inclusion %}
+    <br>
+    {% formfield player.legitimacy %}
+    <br>
+    {{ next_button }}
+{{ endblock }}

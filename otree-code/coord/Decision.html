@@ -1,0 +1,44 @@
+{{ block title}}
+    Round {{subsession.round_number }}
+{{ endblock }}
+
+{{ block content }}
+    <table class="table" style="text-align:center">
+    <tbody>
+        <tr>
+            <td><strong>Your action</strong></td>
+            <td><strong>The other person's action</strong></td>
+            <td><strong>Your payoff</strong></td>
+            <td><strong>The other person's payoff</strong></td>
+        </tr>
+        <tr>
+            <td>A</td>
+            <td>A</td>
+            <td>{{C.PAYOFF_MUTUAL_C}}</td>
+            <td>{{C.PAYOFF_MUTUAL_C}}</td>
+        </tr>
+        <tr>
+            <td>A</td>
+            <td>B</td>
+            <td>{{C.PAYOFF_SUCKER}}</td>
+            <td>{{C.PAYOFF_TEMPTATION}}</td>
+        </tr>
+        <tr>
+            <td>B</td>
+            <td>A</td>
+            <td>{{C.PAYOFF_TEMPTATION}}</td>
+            <td>{{C.PAYOFF_SUCKER}}</td>
+        </tr>
+        <tr>
+            <td>B</td>
+            <td>B</td>
+            <td>{{C.PAYOFF_MUTUAL_D}}</td>
+            <td>{{C.PAYOFF_MUTUAL_D}}</td>
+        </tr>
+    </tbody>
+    </table>
+
+    {{ formfields }}
+    <br>
+    {{ next_button }}
+{{ endblock }}

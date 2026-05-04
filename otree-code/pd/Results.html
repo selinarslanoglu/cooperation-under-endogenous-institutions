@@ -1,0 +1,24 @@
+{{ block title }}
+    Results
+{{ endblock }}
+
+{{ block content }}
+    <table class="table">
+        <tr>
+            <td>Round {{ subsession.round_number }}</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>Your decision: {{ player.is_cooperated }}</td>
+            <td>Your payoff: {{ player.payoff }}</td>
+        </tr>
+        <tr>
+            <td>The other person's decision: {{ partner.is_cooperated }}</td>
+            <td>The other person's payoff: {{ partner.payoff }}</td>
+        </tr>
+    </table>
+    <br>
+    {{ next_button }}
+{{ endblock }}
+
+

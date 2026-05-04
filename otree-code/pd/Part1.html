@@ -1,0 +1,124 @@
+{{ block title }}
+    Part 1
+{{ endblock }}
+{{ block content }}
+
+<style>
+    .tab {
+        display: none;
+    }
+</style>
+
+<div class="tab">
+    <h5>Instructions</h5>
+    <br>
+    <p style="text-align: justify;">
+        In part 1, you will be asked to make decisions in several rounds. For this part of this experiment, you will be
+        randomly placed into a group of four people. Within this group, <strong>you will be randomly paired with another
+        participant in each round</strong>. Everybody in your group has received the exact same instructions. However, it
+        may be that people that are not in your group will participate in a different experiment.
+
+    <p style="text-align: justify;">
+        There will be ten rounds in the first part of this experiment. In each round, you and the person you are matched
+        with will simultaneously and independently choose one of two actions, A or B. The payoff you earn depends on
+        both your action and the action of the person you are matched with.
+    </p>
+
+    <p style="text-align: justify;">
+        If the person you are matched with chooses A, and you choose A, both of you earn 50 points. If the person you
+        are matched with chooses B, and you choose A, you earn 10 points. whereas the other person earns 60 points.
+        If the person you are matched with chooses A, and you choose B, you earn 60 points, whereas the other person
+        earns 10 points. If the person you are matched with chooses B, and you choose B, you both earn 40 points.
+        Table 1 given below summarizes the payoffs you and the other person you are matched with can get.
+    </p>
+
+    <table class="table" style="text-align:center">
+        <caption style="text-align: center">Table 1</caption>
+        <tr>
+            <td><strong>Your action</strong></td>
+            <td><strong>The other person's action</strong></td>
+            <td><strong>Your payoff</strong></td>
+            <td><strong>The other person's payoff</strong></td>
+        </tr>
+        <tr>
+             <td>A</td>
+             <td>A</td>
+             <td>{{C.PAYOFF_MUTUAL_C}}</td>
+             <td>{{C.PAYOFF_MUTUAL_C}}</td>
+        </tr>
+        <tr>
+            <td>A</td>
+            <td>B</td>
+            <td>{{C.PAYOFF_SUCKER}}</td>
+            <td>{{C.PAYOFF_TEMPTATION}}</td>
+        </tr>
+        <tr>
+            <td>B</td>
+            <td>A</td>
+            <td>{{C.PAYOFF_TEMPTATION}}</td>
+            <td>{{C.PAYOFF_SUCKER}}</td>
+        </tr>
+        <tr>
+            <td>B</td>
+            <td>B</td>
+            <td>{{C.PAYOFF_MUTUAL_D}}</td>
+            <td>{{C.PAYOFF_MUTUAL_D}}</td>
+        </tr>
+    </table>
+    <br>
+    <p>
+        <button type="button" class="btn btn-primary btn-tab" data-offset="1">Next</button>
+    </p>
+</div>
+<div class="tab">
+    <h5>Practice Questions</h5>
+    <br>
+    <p style="text-align: justify;">
+        Before the rounds of Part 1 starts, you are asked to answer the following questions to ensure that the
+        instructions are clear to you.
+    </p>
+    <table class="table">
+    {{ for field in form }}
+        <tr>
+            <td>{{ field.label }}</td>
+            <td>{{ field }}</td>
+        </tr>
+    {{ endfor }}
+    </table>
+    <br>
+    <p>
+        <button type="button" class="btn btn-primary btn-tab" data-offset="-1">Previous</button>
+        <button class="btn btn-primary">Next</button>
+    </p>
+</div>
+
+<script>
+    let activeTab = js_vars.errors.length === 0 ? 0 : 1;
+    if (activeTab === 1) {
+        document.getElementsByClassName("otree-form-errors")[0].firstChild.nodeValue =
+            "There are incorrect answers. Please read the instructions again.";
+
+            js_vars.errors.forEach(function (item, index) {
+                const input = document.getElementById('id_' + item);
+                input.style.backgroundColor = '#F8A2A2FF';
+            });
+    }
+
+    function showCurrentTabOnly() {
+        let tabIndex = 0;
+        for (let tab of document.getElementsByClassName('tab')) {
+            tab.style.display = tabIndex === activeTab ? 'block' : 'none';
+            tabIndex++;
+        }
+    }
+
+    showCurrentTabOnly();
+    for (let btn of document.getElementsByClassName('btn-tab')) {
+        btn.onclick = function () {
+            activeTab += parseInt(btn.dataset.offset);
+            showCurrentTabOnly();
+        }
+    }
+</script>
+
+{{ endblock }}

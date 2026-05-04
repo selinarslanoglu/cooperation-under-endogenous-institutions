@@ -1,0 +1,13 @@
+{{ block title }}
+    Results
+{{ endblock }}
+
+{{ block content }}
+    <p>Leader elected: {{ group.leader() }}</p>
+    <p>Leader decision considered: {{ group.leader_decision_considered() }}</p>
+    <p>Payoffs are modified: {{ group.game_modified() }}</p>
+    <br>
+    {{ next_button }}
+{{ endblock }}
+
+

@@ -1,0 +1,13 @@
+{{ block title }}
+    Results
+{{ endblock }}
+
+{{ block content }}
+    <p>Votes are considered: {{ group.votes_considered() }}</p>
+
+    <p>Payoffs are modified: {{ group.game_modified() }}</p>
+    <br>
+    {{ next_button }}
+{{ endblock }}
+
+
