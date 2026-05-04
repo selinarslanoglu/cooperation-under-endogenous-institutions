@@ -1,9 +1,5 @@
-# otree_example_pd_and_coordination
-Prisoners dilemma and coordination game with oTree (2022)
-
-
-
-An behavioural experiment consisting two parts with a voting stage in between, 
-where the participants play a standard Prisoners Dilemma game in the first part 
-which might be transformed into a Coordination game in the second part through the Voting stage.
-collaborator test
+An experiment with two treatments: direct democracy and indirect democracy.
+Each treatment consists of two parts with a voting stage in between.
+Participants play a prisoner's dilemma game in the first part,
+which may be transformed into a coordination game in the second part
+through the voting stage.
